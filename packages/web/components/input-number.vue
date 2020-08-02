@@ -2,6 +2,7 @@
   <v-text-field
     v-bind="$attrs"
     class="number-input"
+    inputmode="numeric"
     type="number"
     :value="value"
     @input="$emit('input', $event)"

@@ -14,6 +14,7 @@
       <v-text-field
         v-model="email"
         :error-messages="errors"
+        inputmode="email"
         label="*信箱"
         required
         type="email"
