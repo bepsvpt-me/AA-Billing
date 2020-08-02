@@ -7,7 +7,7 @@
     <v-divider class="mt-6 mb-9" />
 
     <p class="text-h4 text-center">
-      <v-icon color="black" x-large>{{ icon }}</v-icon>
+      <v-icon x-large>{{ icon }}</v-icon>
       <span>誰在揪團</span>
     </p>
   </div>
