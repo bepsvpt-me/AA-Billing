@@ -29,7 +29,7 @@ export default {
   },
 
   // https://nuxtjs.org/api/configuration-css
-  css: ['~/assets/css/app.scss'],
+  css: ['fontsource-roboto', '~/assets/css/app.scss'],
 
   // https://nuxtjs.org/api/configuration-components
   components: false,
@@ -111,5 +111,7 @@ export default {
   },
 
   // https://nuxtjs.org/api/configuration-build
-  build: {},
+  build: {
+    extractCSS: true,
+  },
 } as NuxtConfig
