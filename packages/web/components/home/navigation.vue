@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="link in links" :key="link.to" cols="12" sm="4">
+      <v-col v-for="link in links" :key="link.to" cols="12" md="4">
         <v-card class="pt-4 pb-7 px-8" :color="link.color" dark>
           <v-card-title class="text-h4 justify-center">
             {{ link.title }}
