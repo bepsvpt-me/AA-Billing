@@ -26,6 +26,7 @@
     "ms": "^2.1.2",
     "nuxt": "^2.14.0",
     "nuxt-user-agent": "^1.2.2",
+    "v-mask": "^2.2.3",
     "vee-validate": "^3.3.7",
     "vue": "^2.6.11",
     "vuex-persist": "^2.2.0"

@@ -44,6 +44,7 @@ export default {
   plugins: [
     '~/plugins/aa-billing.client',
     '~/plugins/axios',
+    '~/plugins/v-mask.client',
     '~/plugins/vuex-decorators',
     '~/plugins/vuex-persist.client',
   ],
