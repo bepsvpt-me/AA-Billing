@@ -1,3 +1,5 @@
-* {
-  transition: background-color 0.5s, color 0.5s !important;
+.v-application {
+  transition-duration: 0.2s;
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
