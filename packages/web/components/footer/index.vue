@@ -1,7 +1,9 @@
 <template>
   <v-footer>
     <v-col cols="2">
-      <color-mode />
+      <client-only>
+        <color-mode />
+      </client-only>
     </v-col>
 
     <v-spacer />

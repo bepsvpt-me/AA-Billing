@@ -63,7 +63,6 @@ export default {
   // https://nuxtjs.org/api/configuration-modules#-code-buildmodules-code-
   buildModules: [
     '@nuxt/typescript-build',
-    '@nuxtjs/color-mode',
     '@nuxtjs/date-fns',
     '@nuxtjs/dotenv',
     '@nuxtjs/stylelint-module',
@@ -76,12 +75,6 @@ export default {
 
   // https://axios.nuxtjs.org
   axios: {},
-
-  // https://github.com/nuxt-community/color-mode-module
-  colorMode: {
-    fallback: 'dark',
-    preference: 'system',
-  },
 
   // https://github.com/nuxt-community/date-fns-module
   dateFns: {
