@@ -31,6 +31,7 @@ export default Vue.extend({
 
   computed: {
     link(): string | undefined {
+      // @ts-ignore
       switch (this.$ua.browser().toLowerCase()) {
         case 'chrome':
           return 'https://support.google.com/chrome/answer/95647?hl=zh-Hant'
