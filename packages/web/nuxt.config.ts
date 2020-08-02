@@ -53,11 +53,11 @@ export default {
     '@nuxtjs/amp',
     '@nuxtjs/auth-next',
     '@nuxtjs/axios',
-    '@nuxtjs/device',
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
     // '@nuxtjs/sitemap',
     '@nuxtjs/universal-storage',
+    'nuxt-user-agent',
   ],
 
   // https://nuxtjs.org/api/configuration-modules#-code-buildmodules-code-
