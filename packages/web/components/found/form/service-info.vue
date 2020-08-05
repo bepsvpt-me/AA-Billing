@@ -5,7 +5,13 @@
       <span class="ml-2 text-h6">共享服務資訊</span>
     </v-row>
 
-    <validation-provider v-slot="{ errors }" name="服務" rules="required" slim>
+    <validation-provider
+      v-slot="{ errors }"
+      name="服務"
+      rules="required"
+      slim
+      vid="service.name"
+    >
       <v-autocomplete
         v-model="name"
         :error-messages="errors"
@@ -17,7 +23,13 @@
       />
     </validation-provider>
 
-    <validation-provider v-slot="{ errors }" name="方案" rules="required" slim>
+    <validation-provider
+      v-slot="{ errors }"
+      name="方案"
+      rules="required"
+      slim
+      vid="service.plan"
+    >
       <v-autocomplete
         v-model="plan"
         :error-messages="errors"
@@ -34,6 +46,7 @@
       name="定價"
       rules="required|numeric|min_value:0"
       slim
+      vid="service.price"
     >
       <input-number
         v-model="price"
@@ -49,6 +62,7 @@
       name="人數"
       rules="required|min:1"
       slim
+      vid="service.members"
     >
       <input-number
         v-model="members"
@@ -66,6 +80,7 @@
       name="週期"
       rules="required|between:1,12"
       slim
+      vid="service.cycle"
     >
       <input-number
         v-model="cycle"
@@ -83,6 +98,7 @@
       name="收費"
       rules="required|between:1,12"
       slim
+      vid="service.payment"
     >
       <input-number
         v-model="payment"
@@ -115,6 +131,20 @@ export default Vue.extend({
     InputNumber,
   },
 
+  props: {
+    fees: {
+      default: '0',
+      required: true,
+      type: String,
+    },
+
+    reward: {
+      default: '0',
+      required: true,
+      type: String,
+    },
+  },
+
   data: () => ({
     cycle: '12',
     members: '1',
@@ -126,6 +156,10 @@ export default Vue.extend({
   }),
 
   computed: {
+    creditCardExtraPayment(): number {
+      return (parseFloat(this.fees) - parseFloat(this.reward)) / 100
+    },
+
     icon(): string {
       switch (this.name) {
         case '1password':
@@ -166,26 +200,32 @@ export default Vue.extend({
   },
 
   watch: {
+    creditCardExtraPayment() {
+      this.calculatePayment()
+    },
+
     cycle() {
-      this.calculate()
+      this.calculatePayment()
     },
 
     members() {
-      this.calculate()
+      this.calculatePayment()
     },
 
     price() {
-      this.calculate()
+      this.calculatePayment()
     },
   },
 
   methods: {
-    calculate() {
+    calculatePayment() {
       if (!(this.price && this.members && this.cycle)) {
         return
       }
 
-      const total = parseFloat(this.price) * parseInt(this.cycle, 10)
+      const price = parseFloat(this.price) * (1 + this.creditCardExtraPayment)
+
+      const total = price * parseInt(this.cycle, 10)
 
       const average = total / parseInt(this.members, 10)
 
