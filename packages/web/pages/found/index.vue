@@ -14,6 +14,8 @@
 
         <service-info :fees="card.fees" :reward="card.reward" />
 
+        <other-info />
+
         <v-btn
           block
           color="primary"
@@ -37,6 +39,7 @@ import { ValidationObserver } from 'vee-validate'
 import BeneficiaryInfo from '~/components/found/form/beneficiary-info.vue'
 import CreditCardInfo from '~/components/found/form/credit-card-info.vue'
 import FounderInfo from '~/components/found/form/founder-info.vue'
+import OtherInfo from '~/components/found/form/other-info.vue'
 import ServiceInfo from '~/components/found/form/service-info.vue'
 
 export default Vue.extend({
@@ -44,6 +47,7 @@ export default Vue.extend({
     BeneficiaryInfo,
     CreditCardInfo,
     FounderInfo,
+    OtherInfo,
     ServiceInfo,
   },
 
