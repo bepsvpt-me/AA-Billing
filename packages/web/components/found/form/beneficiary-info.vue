@@ -10,6 +10,7 @@
       name="銀行代號"
       rules="required"
       slim
+      vid="bank.code"
     >
       <v-autocomplete
         v-model="code"
@@ -26,6 +27,7 @@
       name="帳號"
       rules="required|numeric"
       slim
+      vid="bank.no"
     >
       <input-number
         v-model="no"
@@ -40,6 +42,7 @@
       name="戶名"
       rules="required|min:2"
       slim
+      vid="bank.name"
     >
       <v-text-field
         v-model="name"

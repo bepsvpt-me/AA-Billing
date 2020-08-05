@@ -10,11 +10,11 @@
       name="姓名"
       rules="required|min:2"
       slim
+      vid="founder.name"
     >
       <v-text-field
-        v-model="email"
+        v-model="name"
         :error-messages="errors"
-        inputmode="name"
         label="*姓名"
         required
       />
@@ -25,6 +25,7 @@
       name="信箱"
       rules="required|email"
       slim
+      vid="founder.email"
     >
       <v-text-field
         v-model="email"
@@ -41,6 +42,7 @@
       name="手機"
       rules="required|digits:10"
       slim
+      vid="founder.phone"
     >
       <input-number
         v-model="phone"

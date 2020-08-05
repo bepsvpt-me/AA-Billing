@@ -13,6 +13,7 @@
         regex: /^\d+(\.\d+)?$/,
       }"
       slim
+      vid="card.fees"
     >
       <input-number
         v-model="fees"
@@ -32,6 +33,7 @@
         regex: /^\d+(\.\d+)?$/,
       }"
       slim
+      vid="card.reward"
     >
       <input-number
         v-model="reward"
