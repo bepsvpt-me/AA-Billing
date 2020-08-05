@@ -13,7 +13,7 @@
         label="*服務"
         menu-props="attach,offsetY"
         required
-        @change="changePrice"
+        @change="onPriceChanged"
       />
     </validation-provider>
 
@@ -25,7 +25,7 @@
         label="*方案"
         menu-props="attach,offsetY"
         required
-        @change="changePrice"
+        @change="onPriceChanged"
       />
     </validation-provider>
 
@@ -38,9 +38,60 @@
       <input-number
         v-model="price"
         :error-messages="errors"
-        hint="*新台幣"
         label="*定價"
         required
+        suffix="元"
+      />
+    </validation-provider>
+
+    <validation-provider
+      v-slot="{ errors }"
+      name="人數"
+      rules="required|min:1"
+      slim
+    >
+      <input-number
+        v-model="members"
+        :error-messages="errors"
+        label="*人數（含主揪）"
+        max="12"
+        min="1"
+        required
+        suffix="人"
+      />
+    </validation-provider>
+
+    <validation-provider
+      v-slot="{ errors }"
+      name="週期"
+      rules="required|between:1,12"
+      slim
+    >
+      <input-number
+        v-model="cycle"
+        :error-messages="errors"
+        label="*週期"
+        max="12"
+        min="1"
+        required
+        suffix="個週期"
+      />
+    </validation-provider>
+
+    <validation-provider
+      v-slot="{ errors }"
+      name="收費"
+      rules="required|between:1,12"
+      slim
+    >
+      <input-number
+        v-model="payment"
+        :error-messages="errors"
+        label="*收費"
+        min="0"
+        prefix="每人"
+        required
+        suffix="元"
       />
     </validation-provider>
   </section>
@@ -56,7 +107,7 @@ import {
   mdiSpotify,
   mdiYoutube,
 } from '@mdi/js'
-import services from './services'
+import services, { Service } from './services'
 import InputNumber from '~/components/input-number.vue'
 
 export default Vue.extend({
@@ -65,7 +116,10 @@ export default Vue.extend({
   },
 
   data: () => ({
+    cycle: '12',
+    members: '1',
     name: '',
+    payment: '0',
     plan: '',
     price: '',
     services,
@@ -94,7 +148,7 @@ export default Vue.extend({
       }
     },
 
-    plans() {
+    plans(): string[] {
       const plans = ['其他']
 
       if (!this.service) {
@@ -106,13 +160,39 @@ export default Vue.extend({
       return plans
     },
 
-    service() {
+    service(): Service | undefined {
       return this.services.find((service) => service.value === this.name)
     },
   },
 
+  watch: {
+    cycle() {
+      this.calculate()
+    },
+
+    members() {
+      this.calculate()
+    },
+
+    price() {
+      this.calculate()
+    },
+  },
+
   methods: {
-    changePrice() {
+    calculate() {
+      if (!(this.price && this.members && this.cycle)) {
+        return
+      }
+
+      const total = parseFloat(this.price) * parseInt(this.cycle, 10)
+
+      const average = total / parseInt(this.members, 10)
+
+      this.payment = Math.round(average).toString(10)
+    },
+
+    onPriceChanged() {
       if (!this.service) {
         return
       }
@@ -120,6 +200,8 @@ export default Vue.extend({
       const plan = this.service.plans.find((plan) => plan.text === this.plan)
 
       if (plan) {
+        this.members = plan.maximum
+
         this.price = plan.value
       }
     },
