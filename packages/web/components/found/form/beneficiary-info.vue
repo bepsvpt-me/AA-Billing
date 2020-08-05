@@ -2,7 +2,7 @@
   <section>
     <v-row align="center" no-gutters>
       <v-icon>{{ icon }}</v-icon>
-      <span class="ml-2 text-h6">收款資訊</span>
+      <span class="ml-2 text-h6">收款人資訊</span>
     </v-row>
 
     <validation-provider
