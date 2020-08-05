@@ -2,8 +2,23 @@
   <section>
     <v-row align="center" no-gutters>
       <v-icon>{{ icon }}</v-icon>
-      <span class="ml-2 text-h6">主揪人資訊</span>
+      <span class="ml-2 text-h6">主揪資訊</span>
     </v-row>
+
+    <validation-provider
+      v-slot="{ errors }"
+      name="姓名"
+      rules="required|min:2"
+      slim
+    >
+      <v-text-field
+        v-model="email"
+        :error-messages="errors"
+        inputmode="name"
+        label="*姓名"
+        required
+      />
+    </validation-provider>
 
     <validation-provider
       v-slot="{ errors }"
@@ -50,6 +65,7 @@ export default Vue.extend({
   data: () => ({
     email: '',
     icon: mdiCardAccountDetails,
+    name: '',
     phone: '',
   }),
 })
